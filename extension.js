@@ -395,6 +395,11 @@ const ClipboardIndicator = GObject.registerClass({
         menuItem.radioGroup = this.clipItemsRadioGroup;
         menuItem.buttonPressId = menuItem.connect('activate',
             autoSet => this._onMenuItemSelectedAndMenuClose(menuItem, autoSet));
+        menuItem.actor.connect('key-press-event', (actor, event) => {
+            if(event.get_key_symbol() === Clutter.KEY_Delete) {
+                this._removeEntry(menuItem, 'delete')
+            }
+        })
 
         this._setEntryLabel(menuItem);
         this.clipItemsRadioGroup.push(menuItem);
