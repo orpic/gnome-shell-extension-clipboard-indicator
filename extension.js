@@ -417,7 +417,7 @@ const ClipboardIndicator = GObject.registerClass({
                 if (nextMenuItem) {
                     nextMenuItem.actor.grab_key_focus()
                 } else {
-                    this.searchEntry.grab_key_focus()
+                    this.privateModeMenuItem.actor.grab_key_focus()
                 }
             }
         })
