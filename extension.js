@@ -387,16 +387,16 @@ const ClipboardIndicator = GObject.registerClass({
     }
 
     _findNextMenuItem (currentMenutItem) {
-        let currentIndex = this.clipItemsRadioGroup.indexOf(currentMenutItem)
+        let currentIndex = this.clipItemsRadioGroup.indexOf(currentMenutItem);
 
         for (let i = currentIndex +1; i < this.clipItemsRadioGroup.length; i++){
-            let menuItem  = this.clipItemsRadioGroup[i]
+            let menuItem  = this.clipItemsRadioGroup[i];
             if(menuItem.actor.visible) {
-                return menuItem
+                return menuItem;
             }
         }
 
-        return null
+        return null;
     }
 
     _addEntry (entry, autoSelect, autoSetClip) {
@@ -407,17 +407,17 @@ const ClipboardIndicator = GObject.registerClass({
         menuItem.clipContents = entry.getStringValue();
         menuItem.radioGroup = this.clipItemsRadioGroup;
         menuItem.buttonPressId = menuItem.connect('activate',
-            autoSet => this._onMenuItemSelectedAndMenuClose(menuItem, autoSet))
+            autoSet => this._onMenuItemSelectedAndMenuClose(menuItem, autoSet));
         menuItem.actor.connect('key-press-event', (actor, event) => {
             if(event.get_key_symbol() === Clutter.KEY_Delete) {
-                this._removeEntry(menuItem, 'delete')
+                this._removeEntry(menuItem, 'delete');
 
-                let nextMenuItem = this._findNextMenuItem(menuItem)
+                let nextMenuItem = this._findNextMenuItem(menuItem);
 
                 if (nextMenuItem) {
-                    nextMenuItem.actor.grab_key_focus()
+                    nextMenuItem.actor.grab_key_focus();
                 } else {
-                    this.privateModeMenuItem.actor.grab_key_focus()
+                    this.privateModeMenuItem.actor.grab_key_focus();
                 }
             }
         })
