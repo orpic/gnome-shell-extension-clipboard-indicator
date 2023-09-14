@@ -422,15 +422,17 @@ const ClipboardIndicator = GObject.registerClass({
         });
         menuItem.actor.connect('key-press-event', (actor, event) => {
             if(event.get_key_symbol() === Clutter.KEY_Delete) {
-                this._removeEntry(menuItem, 'delete');
-
+                
                 let nextMenuItem = this._findNextMenuItem(menuItem);
-
+                
                 if (nextMenuItem) {
                     nextMenuItem.actor.grab_key_focus();
                 } else {
                     this.privateModeMenuItem.actor.grab_key_focus();
                 }
+
+                this._removeEntry(menuItem, 'delete');
+                
             }
         })
 
