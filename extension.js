@@ -452,8 +452,8 @@ const ClipboardIndicator = GObject.registerClass({
                 this._removeEntry(menuItem, 'delete');
             }
             else if (event.get_key_symbol() === Clutter.KEY_p) {
-                this._favoriteToggle(menuItem);
                 this.#selectNextMenuItem(menuItem);
+                this._favoriteToggle(menuItem);
             }
             else if (event.get_key_symbol() === Clutter.KEY_v) {
                 this.#pasteItem(menuItem);
